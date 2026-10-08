@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Create Virtual Class - Virtual Classroom</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <header>
+
+        <div class="logo">
+            Virtual Classroom
+        </div>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="create-class.html">Create Class</a>
+            <a href="live-class.html">Live Classes</a>
+            <a href="login.html">Logout</a>
+        </nav>
+
+    </header>
+
+
+    <!-- Create Class Section -->
+    <section class="auth-section">
+
+        <div class="auth-container">
+
+            <h1>
+                Create Virtual Class
+            </h1>
+
+            <p class="auth-subtitle">
+                Create a new live class for your students
+            </p>
+
+
+            <!-- Create Class Form -->
+            <form id="classForm">
+
+                <!-- Class Name -->
+                <div class="form-group">
+
+                    <label for="className">
+                        Class Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="className"
+                        placeholder="Example: Data Structures"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- Subject -->
+                <div class="form-group">
+
+                    <label for="subject">
+                        Subject
+                    </label>
+
+                    <input
+                        type="text"
+                        id="subject"
+                        placeholder="Enter subject name"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- Teacher Name -->
+                <div class="form-group">
+
+                    <label for="teacher">
+                        Teacher Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="teacher"
+                        placeholder="Enter teacher name"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- Date -->
+                <div class="form-group">
+
+                    <label for="date">
+                        Class Date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="date"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- Time -->
+                <div class="form-group">
+
+                    <label for="time">
+                        Class Time
+                    </label>
+
+                    <input
+                        type="time"
+                        id="time"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- Duration -->
+                <div class="form-group">
+
+                    <label for="duration">
+                        Duration
+                    </label>
+
+                    <select id="duration" required>
+
+                        <option value="">
+                            Select duration
+                        </option>
+
+                        <option value="30">
+                            30 Minutes
+                        </option>
+
+                        <option value="60">
+                            1 Hour
+                        </option>
+
+                        <option value="90">
+                            1.5 Hours
+                        </option>
+
+                        <option value="120">
+                            2 Hours
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- Meeting Link -->
+                <div class="form-group">
+
+                    <label for="meetingLink">
+                        Live Class Link
+                    </label>
+
+                    <input
+                        type="url"
+                        id="meetingLink"
+                        placeholder="https://meet.example.com/class"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- Description -->
+                <div class="form-group">
+
+                    <label for="description">
+                        Class Description
+                    </label>
+
+                    <textarea
+                        id="description"
+                        rows="4"
+                        placeholder="Enter class details..."
+                    ></textarea>
+
+                </div>
+
+
+                <!-- Submit -->
+                <button
+                    type="submit"
+                    class="btn primary-btn login-btn"
+                >
+                    Create Class
+                </button>
+
+            </form>
+
+        </div>
+
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <p>
+            © 2026 Virtual Classroom Platform
+        </p>
+
+        <p>
+            Agile/Scrum Simulation using Git & GitHub
+        </p>
+
+    </footer>
+
+
+    <!-- JavaScript -->
+    <script>
+
+        document
+            .getElementById("classForm")
+            .addEventListener("submit", function(event) {
+
+                event.preventDefault();
+
+
+                const classData = {
+
+                    className:
+                        document.getElementById("className").value,
+
+                    subject:
+                        document.getElementById("subject").value,
+
+                    teacher:
+                        document.getElementById("teacher").value,
+
+                    date:
+                        document.getElementById("date").value,
+
+                    time:
+                        document.getElementById("time").value,
+
+                    duration:
+                        document.getElementById("duration").value,
+
+                    meetingLink:
+                        document.getElementById("meetingLink").value,
+
+                    description:
+                        document.getElementById("description").value
+
+                };
+
+
+                /*
+                 * Store the class temporarily in
+                 * browser localStorage.
+                 *
+                 * A real application would store
+                 * this information in a database.
+                 */
+
+                localStorage.setItem(
+                    "virtualClass",
+                    JSON.stringify(classData)
+                );
+
+
+                alert(
+                    "Virtual class created successfully!"
+                );
+
+
+                window.location.href =
+                    "live-class.html";
+
+            });
+
+    </script>
+
+</body>
+
+</html>
