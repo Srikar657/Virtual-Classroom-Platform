@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Registration - Virtual Classroom</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <header>
+
+        <div class="logo">
+            Virtual Classroom
+        </div>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="login.html">Login</a>
+            <a href="register.html">Register</a>
+        </nav>
+
+    </header>
+
+
+    <!-- Registration Section -->
+    <section class="auth-section">
+
+        <div class="auth-container">
+
+            <h1>
+                Student Registration
+            </h1>
+
+            <p class="auth-subtitle">
+                Create your virtual classroom account
+            </p>
+
+
+            <!-- Registration Form -->
+            <form id="registerForm">
+
+                <!-- Full Name -->
+                <div class="form-group">
+
+                    <label for="name">
+                        Full Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        placeholder="Enter your full name"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- Student ID -->
+                <div class="form-group">
+
+                    <label for="studentId">
+                        Student ID
+                    </label>
+
+                    <input
+                        type="text"
+                        id="studentId"
+                        name="studentId"
+                        placeholder="Enter your student ID"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- Email -->
+                <div class="form-group">
+
+                    <label for="email">
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="Enter your email"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- Phone -->
+                <div class="form-group">
+
+                    <label for="phone">
+                        Phone Number
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        placeholder="Enter your phone number"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- Course -->
+                <div class="form-group">
+
+                    <label for="course">
+                        Course / Branch
+                    </label>
+
+                    <select
+                        id="course"
+                        name="course"
+                        required
+                    >
+
+                        <option value="">
+                            Select your course
+                        </option>
+
+                        <option value="CSE">
+                            Computer Science Engineering
+                        </option>
+
+                        <option value="AIML">
+                            CSE - Artificial Intelligence & Machine Learning
+                        </option>
+
+                        <option value="ECE">
+                            Electronics & Communication Engineering
+                        </option>
+
+                        <option value="EEE">
+                            Electrical & Electronics Engineering
+                        </option>
+
+                        <option value="MECH">
+                            Mechanical Engineering
+                        </option>
+
+                        <option value="CIVIL">
+                            Civil Engineering
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- Year -->
+                <div class="form-group">
+
+                    <label for="year">
+                        Year of Study
+                    </label>
+
+                    <select
+                        id="year"
+                        name="year"
+                        required
+                    >
+
+                        <option value="">
+                            Select year
+                        </option>
+
+                        <option value="1">
+                            1st Year
+                        </option>
+
+                        <option value="2">
+                            2nd Year
+                        </option>
+
+                        <option value="3">
+                            3rd Year
+                        </option>
+
+                        <option value="4">
+                            4th Year
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- Password -->
+                <div class="form-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Create a password"
+                        minlength="6"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- Confirm Password -->
+                <div class="form-group">
+
+                    <label for="confirmPassword">
+                        Confirm Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="confirmPassword"
+                        name="confirmPassword"
+                        placeholder="Confirm your password"
+                        minlength="6"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- Terms -->
+                <div class="remember">
+
+                    <input
+                        type="checkbox"
+                        id="terms"
+                        required
+                    >
+
+                    <label for="terms">
+                        I agree to the terms and conditions
+                    </label>
+
+                </div>
+
+
+                <!-- Register Button -->
+                <button
+                    type="submit"
+                    class="btn primary-btn login-btn"
+                >
+                    Create Account
+                </button>
+
+            </form>
+
+
+            <!-- Login Link -->
+            <p class="auth-link">
+
+                Already have an account?
+
+                <a href="login.html">
+                    Login here
+                </a>
+
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <p>
+            © 2026 Virtual Classroom Platform
+        </p>
+
+        <p>
+            Agile/Scrum Simulation using Git & GitHub
+        </p>
+
+    </footer>
+
+
+    <!-- Registration JavaScript -->
+    <script>
+
+        document
+            .getElementById("registerForm")
+            .addEventListener("submit", function(event) {
+
+                event.preventDefault();
+
+
+                const name =
+                    document.getElementById("name").value.trim();
+
+                const studentId =
+                    document.getElementById("studentId").value.trim();
+
+                const email =
+                    document.getElementById("email").value.trim();
+
+                const phone =
+                    document.getElementById("phone").value.trim();
+
+                const course =
+                    document.getElementById("course").value;
+
+                const year =
+                    document.getElementById("year").value;
+
+                const password =
+                    document.getElementById("password").value;
+
+                const confirmPassword =
+                    document.getElementById("confirmPassword").value;
+
+
+                // Check password
+                if (password !== confirmPassword) {
+
+                    alert(
+                        "Passwords do not match."
+                    );
+
+                    return;
+                }
+
+
+                // Check password length
+                if (password.length < 6) {
+
+                    alert(
+                        "Password must contain at least 6 characters."
+                    );
+
+                    return;
+                }
+
+
+                /*
+                 * Frontend demonstration only.
+                 *
+                 * In a real application, registration
+                 * information should be sent to a backend
+                 * server and stored securely in a database.
+                 */
+
+                const student = {
+
+                    name: name,
+
+                    studentId: studentId,
+
+                    email: email,
+
+                    phone: phone,
+
+                    course: course,
+
+                    year: year
+
+                };
+
+
+                // Store demonstration data locally
+                localStorage.setItem(
+                    "student",
+                    JSON.stringify(student)
+                );
+
+
+                alert(
+                    "Registration successful!"
+                );
+
+
+                // Redirect to login
+                window.location.href =
+                    "login.html";
+
+            });
+
+    </script>
+
+</body>
+
+</html>
