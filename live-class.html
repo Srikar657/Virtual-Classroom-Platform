@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Live Classes - Virtual Classroom</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        /* Live Class Page */
+
+        .class-section {
+            min-height: calc(100vh - 150px);
+            padding: 50px 8%;
+            background: #f4f7fb;
+        }
+
+        .page-title {
+            text-align: center;
+            color: #1e3a8a;
+            margin-bottom: 10px;
+            font-size: 36px;
+        }
+
+        .page-description {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+        }
+
+        .class-container {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .class-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 25px;
+
+            box-shadow:
+                0 5px 20px
+                rgba(0, 0, 0, 0.08);
+
+            transition: 0.3s;
+        }
+
+        .class-card:hover {
+            transform: translateY(-5px);
+
+            box-shadow:
+                0 10px 30px
+                rgba(0, 0, 0, 0.12);
+        }
+
+        .class-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            margin-bottom: 20px;
+        }
+
+        .class-header h2 {
+            color: #1e3a8a;
+        }
+
+        .live-badge {
+            background: #dc2626;
+            color: white;
+
+            padding: 6px 12px;
+
+            border-radius: 20px;
+
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .class-info {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 15px;
+
+            margin-bottom: 20px;
+        }
+
+        .info-item {
+            background: #f8fafc;
+
+            padding: 15px;
+
+            border-radius: 8px;
+        }
+
+        .info-item strong {
+            display: block;
+
+            color: #1e3a8a;
+
+            margin-bottom: 5px;
+        }
+
+        .info-item span {
+            color: #555;
+        }
+
+        .class-description {
+            color: #666;
+
+            line-height: 1.6;
+
+            margin-bottom: 20px;
+        }
+
+        .join-btn {
+            display: inline-block;
+
+            background: #16a34a;
+
+            color: white;
+
+            padding: 12px 25px;
+
+            border-radius: 8px;
+
+            text-decoration: none;
+
+            font-weight: bold;
+
+            border: none;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+        .join-btn:hover {
+            background: #15803d;
+
+            transform: translateY(-2px);
+        }
+
+        .no-class {
+            text-align: center;
+
+            background: white;
+
+            padding: 50px;
+
+            border-radius: 15px;
+
+            box-shadow:
+                0 5px 20px
+                rgba(0, 0, 0, 0.08);
+        }
+
+        .no-class h2 {
+            color: #1e3a8a;
+
+            margin-bottom: 10px;
+        }
+
+        .no-class p {
+            color: #666;
+        }
+
+
+        @media (max-width: 700px) {
+
+            .class-info {
+                grid-template-columns: 1fr;
+            }
+
+            .class-header {
+                flex-direction: column;
+
+                align-items: flex-start;
+
+                gap: 10px;
+            }
+
+            .page-title {
+                font-size: 30px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+
+    <!-- Navigation Bar -->
+
+    <header>
+
+        <div class="logo">
+            Virtual Classroom
+        </div>
+
+        <nav>
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="live-class.html">
+                Live Classes
+            </a>
+
+            <a href="discussion.html">
+                Discussion
+            </a>
+
+            <a href="login.html">
+                Logout
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- Live Classes -->
+
+    <section class="class-section">
+
+        <h1 class="page-title">
+            Live Classes
+        </h1>
+
+        <p class="page-description">
+            View available virtual classes and join your live session.
+        </p>
+
+
+        <div
+            id="classContainer"
+            class="class-container"
+        >
+
+            <!-- Class information will appear here -->
+
+        </div>
+
+    </section>
+
+
+    <!-- Footer -->
+
+    <footer>
+
+        <p>
+            © 2026 Virtual Classroom Platform
+        </p>
+
+        <p>
+            Agile/Scrum Simulation using Git & GitHub
+        </p>
+
+    </footer>
+
+
+    <!-- JavaScript -->
+
+    <script>
+
+        const classContainer =
+            document.getElementById("classContainer");
+
+
+        /*
+         * Get class information created
+         * by the teacher.
+         */
+
+        const savedClass =
+            localStorage.getItem("virtualClass");
+
+
+        if (savedClass) {
+
+            const classData =
+                JSON.parse(savedClass);
+
+
+            /*
+             * Create the class card.
+             */
+
+            classContainer.innerHTML = `
+
+                <div class="class-card">
+
+                    <div class="class-header">
+
+                        <h2>
+                            ${classData.className}
+                        </h2>
+
+                        <span class="live-badge">
+                            LIVE CLASS
+                        </span>
+
+                    </div>
+
+
+                    <div class="class-info">
+
+                        <div class="info-item">
+
+                            <strong>
+                                Subject
+                            </strong>
+
+                            <span>
+                                ${classData.subject}
+                            </span>
+
+                        </div>
+
+
+                        <div class="info-item">
+
+                            <strong>
+                                Teacher
+                            </strong>
+
+                            <span>
+                                ${classData.teacher}
+                            </span>
+
+                        </div>
+
+
+                        <div class="info-item">
+
+                            <strong>
+                                Date
+                            </strong>
+
+                            <span>
+                                ${classData.date}
+                            </span>
+
+                        </div>
+
+
+                        <div class="info-item">
+
+                            <strong>
+                                Time
+                            </strong>
+
+                            <span>
+                                ${classData.time}
+                            </span>
+
+                        </div>
+
+
+                        <div class="info-item">
+
+                            <strong>
+                                Duration
+                            </strong>
+
+                            <span>
+                                ${classData.duration} minutes
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <p class="class-description">
+
+                        ${classData.description ||
+                        "Join this virtual class to attend the online lecture."}
+
+                    </p>
+
+
+                    <button
+                        class="join-btn"
+                        onclick="joinClass()"
+                    >
+                        🎥 Join Live Class
+                    </button>
+
+                </div>
+
+            `;
+
+        }
+
+
+        else {
+
+            /*
+             * Show this when no class has
+             * been created yet.
+             */
+
+            classContainer.innerHTML = `
+
+                <div class="no-class">
+
+                    <h2>
+                        No Classes Available
+                    </h2>
+
+                    <p>
+                        No virtual classes have been
+                        created yet.
+                    </p>
+
+                </div>
+
+            `;
+
+        }
+
+
+        /*
+         * Join Class Function
+         */
+
+        function joinClass() {
+
+            const savedClass =
+                localStorage.getItem("virtualClass");
+
+
+            if (!savedClass) {
+
+                alert(
+                    "No live class is available."
+                );
+
+                return;
+
+            }
+
+
+            const classData =
+                JSON.parse(savedClass);
+
+
+            /*
+             * In a real application,
+             * this would open a real
+             * video conferencing system.
+             */
+
+            const confirmation =
+                confirm(
+                    "Join " +
+                    classData.className +
+                    " live class?"
+                );
+
+
+            if (confirmation) {
+
+                /*
+                 * Open the teacher's
+                 * meeting link.
+                 */
+
+                window.open(
+                    classData.meetingLink,
+                    "_blank"
+                );
+
+            }
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>

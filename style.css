@@ -1,0 +1,502 @@
+/* ============================================
+   VIRTUAL CLASSROOM PLATFORM
+   Main Stylesheet
+   ============================================ */
+
+
+/* ============================================
+   RESET
+   ============================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* ============================================
+   BODY
+   ============================================ */
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f7fb;
+    color: #222;
+    min-height: 100vh;
+}
+
+
+/* ============================================
+   NAVIGATION BAR
+   ============================================ */
+
+header {
+    width: 100%;
+    background: #1e3a8a;
+    color: white;
+
+    padding: 18px 8%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+
+    transition: 0.3s;
+}
+
+
+nav a:hover {
+    color: #93c5fd;
+}
+
+
+/* ============================================
+   HERO SECTION
+   ============================================ */
+
+.hero {
+    min-height: 75vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    padding: 50px 20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #dbeafe,
+            #eff6ff
+        );
+}
+
+
+.hero-content {
+    max-width: 800px;
+}
+
+
+.hero h1 {
+    font-size: 48px;
+    color: #1e3a8a;
+
+    margin-bottom: 20px;
+}
+
+
+.hero p {
+    font-size: 19px;
+    line-height: 1.7;
+
+    color: #555;
+
+    margin-bottom: 30px;
+}
+
+
+/* ============================================
+   BUTTONS
+   ============================================ */
+
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+
+.btn {
+    display: inline-block;
+
+    padding: 13px 25px;
+
+    border-radius: 8px;
+
+    text-decoration: none;
+
+    font-weight: bold;
+
+    border: none;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+
+.primary-btn {
+    background: #2563eb;
+    color: white;
+}
+
+
+.primary-btn:hover {
+    background: #1d4ed8;
+
+    transform: translateY(-2px);
+}
+
+
+.secondary-btn {
+    background: white;
+    color: #2563eb;
+
+    border: 2px solid #2563eb;
+}
+
+
+.secondary-btn:hover {
+    background: #2563eb;
+    color: white;
+}
+
+
+/* ============================================
+   FEATURES SECTION
+   ============================================ */
+
+.features {
+    padding: 60px 8%;
+    background: white;
+}
+
+
+.features h2 {
+    text-align: center;
+
+    color: #1e3a8a;
+
+    margin-bottom: 40px;
+
+    font-size: 32px;
+}
+
+
+.feature-container {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(220px, 1fr)
+        );
+
+    gap: 25px;
+}
+
+
+.feature-card {
+    background: #f8fafc;
+
+    padding: 30px;
+
+    border-radius: 12px;
+
+    text-align: center;
+
+    box-shadow:
+        0 4px 15px
+        rgba(0, 0, 0, 0.08);
+
+    transition: 0.3s;
+}
+
+
+.feature-card:hover {
+    transform: translateY(-8px);
+
+    box-shadow:
+        0 8px 25px
+        rgba(0, 0, 0, 0.12);
+}
+
+
+.feature-icon {
+    font-size: 40px;
+
+    margin-bottom: 15px;
+}
+
+
+.feature-card h3 {
+    color: #2563eb;
+
+    margin-bottom: 12px;
+}
+
+
+.feature-card p {
+    color: #666;
+
+    line-height: 1.6;
+}
+
+
+/* ============================================
+   AUTHENTICATION SECTION
+   Used by login.html and register.html
+   ============================================ */
+
+.auth-section {
+    min-height: calc(100vh - 150px);
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    padding: 50px 20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #dbeafe,
+            #f8fafc
+        );
+}
+
+
+.auth-container {
+    width: 100%;
+    max-width: 500px;
+
+    background: white;
+
+    padding: 40px;
+
+    border-radius: 15px;
+
+    box-shadow:
+        0 10px 35px
+        rgba(0, 0, 0, 0.10);
+}
+
+
+.auth-container h1 {
+    text-align: center;
+
+    color: #1e3a8a;
+
+    margin-bottom: 10px;
+}
+
+
+.auth-subtitle {
+    text-align: center;
+
+    color: #666;
+
+    margin-bottom: 30px;
+}
+
+
+/* ============================================
+   FORM
+   ============================================ */
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+
+.form-group label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    font-weight: bold;
+
+    color: #333;
+}
+
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+
+    padding: 12px;
+
+    border: 1px solid #cbd5e1;
+
+    border-radius: 7px;
+
+    font-size: 15px;
+
+    outline: none;
+
+    transition: 0.3s;
+}
+
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #2563eb;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(37, 99, 235, 0.10);
+}
+
+
+/* ============================================
+   REMEMBER / CHECKBOX
+   ============================================ */
+
+.remember {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    margin-bottom: 20px;
+
+    font-size: 14px;
+}
+
+
+.remember input {
+    width: 16px;
+    height: 16px;
+}
+
+
+.remember label {
+    cursor: pointer;
+}
+
+
+/* ============================================
+   LOGIN BUTTON
+   ============================================ */
+
+.login-btn {
+    width: 100%;
+
+    font-size: 16px;
+
+    padding: 13px;
+}
+
+
+/* ============================================
+   AUTH LINKS
+   ============================================ */
+
+.auth-link {
+    text-align: center;
+
+    margin-top: 25px;
+
+    color: #666;
+}
+
+
+.auth-link a {
+    color: #2563eb;
+
+    text-decoration: none;
+
+    font-weight: bold;
+}
+
+
+.auth-link a:hover {
+    text-decoration: underline;
+}
+
+
+/* ============================================
+   FOOTER
+   ============================================ */
+
+footer {
+    background: #111827;
+
+    color: white;
+
+    text-align: center;
+
+    padding: 20px;
+
+    line-height: 1.8;
+}
+
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+@media (max-width: 700px) {
+
+    header {
+        flex-direction: column;
+
+        gap: 15px;
+
+        text-align: center;
+    }
+
+
+    nav {
+        gap: 12px;
+
+        flex-wrap: wrap;
+
+        justify-content: center;
+    }
+
+
+    .hero h1 {
+        font-size: 35px;
+    }
+
+
+    .hero p {
+        font-size: 16px;
+    }
+
+
+    .hero-buttons {
+        flex-direction: column;
+
+        align-items: center;
+    }
+
+
+    .hero-buttons .btn {
+        width: 200px;
+    }
+
+
+    .auth-container {
+        padding: 25px;
+    }
+
+}
