@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Study Materials - Virtual Classroom</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        .notes-section {
+            min-height: calc(100vh - 150px);
+
+            padding: 50px 8%;
+
+            background: #f4f7fb;
+        }
+
+
+        .page-title {
+            text-align: center;
+
+            color: #1e3a8a;
+
+            margin-bottom: 10px;
+
+            font-size: 36px;
+        }
+
+
+        .page-description {
+            text-align: center;
+
+            color: #666;
+
+            margin-bottom: 40px;
+        }
+
+
+        .notes-container {
+            max-width: 1000px;
+
+            margin: auto;
+        }
+
+
+        .notes-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    auto-fit,
+                    minmax(280px, 1fr)
+                );
+
+            gap: 25px;
+        }
+
+
+        .note-card {
+            background: white;
+
+            padding: 25px;
+
+            border-radius: 15px;
+
+            box-shadow:
+                0 5px 20px
+                rgba(0, 0, 0, 0.08);
+
+            transition: 0.3s;
+        }
+
+
+        .note-card:hover {
+            transform: translateY(-5px);
+
+            box-shadow:
+                0 10px 30px
+                rgba(0, 0, 0, 0.12);
+        }
+
+
+        .note-icon {
+            font-size: 45px;
+
+            margin-bottom: 15px;
+        }
+
+
+        .note-card h2 {
+            color: #1e3a8a;
+
+            margin-bottom: 12px;
+        }
+
+
+        .note-details {
+            color: #666;
+
+            line-height: 1.8;
+
+            margin-bottom: 20px;
+        }
+
+
+        .note-details strong {
+            color: #333;
+        }
+
+
+        .download-btn {
+            display: inline-block;
+
+            background: #2563eb;
+
+            color: white;
+
+            padding: 11px 20px;
+
+            border-radius: 7px;
+
+            text-decoration: none;
+
+            border: none;
+
+            cursor: pointer;
+
+            font-weight: bold;
+
+            transition: 0.3s;
+        }
+
+
+        .download-btn:hover {
+            background: #1d4ed8;
+
+            transform: translateY(-2px);
+        }
+
+
+        .empty-message {
+            text-align: center;
+
+            background: white;
+
+            padding: 50px;
+
+            border-radius: 15px;
+
+            box-shadow:
+                0 5px 20px
+                rgba(0, 0, 0, 0.08);
+        }
+
+
+        .empty-message h2 {
+            color: #1e3a8a;
+
+            margin-bottom: 10px;
+        }
+
+
+        .empty-message p {
+            color: #666;
+        }
+
+
+        @media (max-width: 700px) {
+
+            .notes-section {
+                padding: 30px 5%;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- Navigation Bar -->
+
+    <header>
+
+        <div class="logo">
+            Virtual Classroom
+        </div>
+
+
+        <nav>
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="live-class.html">
+                Live Classes
+            </a>
+
+            <a href="upload-notes.html">
+                Upload Notes
+            </a>
+
+            <a href="download-notes.html">
+                Notes
+            </a>
+
+            <a href="login.html">
+                Logout
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- Notes Section -->
+
+    <section class="notes-section">
+
+        <h1 class="page-title">
+            Study Materials
+        </h1>
+
+
+        <p class="page-description">
+            Access notes and study materials uploaded by teachers.
+        </p>
+
+
+        <div class="notes-container">
+
+            <div
+                id="notesGrid"
+                class="notes-grid"
+            >
+
+                <!-- Notes will appear here -->
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Footer -->
+
+    <footer>
+
+        <p>
+            © 2026 Virtual Classroom Platform
+        </p>
+
+
+        <p>
+            Agile/Scrum Simulation using Git & GitHub
+        </p>
+
+    </footer>
+
+
+    <!-- JavaScript -->
+
+    <script>
+
+        const notesGrid =
+            document.getElementById(
+                "notesGrid"
+            );
+
+
+        /*
+         * Get notes uploaded by
+         * the teacher.
+         */
+
+        const notes =
+            JSON.parse(
+                localStorage.getItem("notes")
+            ) || [];
+
+
+        /*
+         * Display Notes
+         */
+
+        function displayNotes() {
+
+            notesGrid.innerHTML = "";
+
+
+            /*
+             * If no notes exist
+             */
+
+            if (notes.length === 0) {
+
+                notesGrid.innerHTML = `
+
+                    <div class="empty-message">
+
+                        <h2>
+                            No Study Materials
+                        </h2>
+
+                        <p>
+                            No notes have been uploaded yet.
+                        </p>
+
+                    </div>
+
+                `;
+
+                return;
+
+            }
+
+
+            /*
+             * Display every note
+             */
+
+            notes.forEach(
+                function(note) {
+
+                    const card =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    card.className =
+                        "note-card";
+
+
+                    card.innerHTML = `
+
+                        <div class="note-icon">
+                            📄
+                        </div>
+
+
+                        <h2>
+                            ${note.title}
+                        </h2>
+
+
+                        <div class="note-details">
+
+                            <div>
+                                <strong>
+                                    Subject:
+                                </strong>
+
+                                ${note.subject}
+                            </div>
+
+
+                            <div>
+                                <strong>
+                                    Teacher:
+                                </strong>
+
+                                ${note.teacher}
+                            </div>
+
+
+                            <div>
+                                <strong>
+                                    File:
+                                </strong>
+
+                                ${note.fileName}
+                            </div>
+
+
+                            <div>
+                                <strong>
+                                    Size:
+                                </strong>
+
+                                ${note.fileSize}
+                            </div>
+
+
+                            <div>
+                                <strong>
+                                    Uploaded:
+                                </strong>
+
+                                ${note.date}
+                            </div>
+
+                        </div>
+
+
+                        <button
+                            class="download-btn"
+                            onclick="downloadNote('${escapeQuotes(note.fileName)}')"
+                        >
+                            ⬇ Download Note
+                        </button>
+
+                    `;
+
+
+                    notesGrid.appendChild(
+                        card
+                    );
+
+                }
+            );
+
+        }
+
+
+        /*
+         * Download Note
+         *
+         * Since this is a frontend-only project,
+         * the uploaded file itself is not stored
+         * permanently by localStorage.
+         *
+         * Therefore this creates a demonstration
+         * download containing the note information.
+         */
+
+        function downloadNote(fileName) {
+
+            const note =
+                notes.find(
+                    function(item) {
+
+                        return item.fileName === fileName;
+
+                    }
+                );
+
+
+            if (!note) {
+
+                alert(
+                    "Note could not be found."
+                );
+
+                return;
+
+            }
+
+
+            const content =
+
+                "Virtual Classroom Platform\n\n" +
+
+                "Study Material\n" +
+
+                "--------------------------\n\n" +
+
+                "Title: " +
+                note.title +
+                "\n" +
+
+                "Subject: " +
+                note.subject +
+                "\n" +
+
+                "Teacher: " +
+                note.teacher +
+                "\n" +
+
+                "Original File: " +
+                note.fileName +
+                "\n" +
+
+                "File Size: " +
+                note.fileSize +
+                "\n" +
+
+                "Uploaded: " +
+                note.date +
+                "\n\n" +
+
+                "This is a demonstration " +
+                "download for the Virtual " +
+                "Classroom project.";
+
+
+            const blob =
+                new Blob(
+                    [content],
+                    {
+                        type: "text/plain"
+                    }
+                );
+
+
+            const url =
+                URL.createObjectURL(
+                    blob
+                );
+
+
+            const link =
+                document.createElement(
+                    "a"
+                );
+
+
+            link.href = url;
+
+
+            link.download =
+                fileName +
+                ".txt";
+
+
+            document.body.appendChild(
+                link
+            );
+
+
+            link.click();
+
+
+            document.body.removeChild(
+                link
+            );
+
+
+            URL.revokeObjectURL(
+                url
+            );
+
+
+            alert(
+                "Note information downloaded successfully!"
+            );
+
+        }
+
+
+        /*
+         * Prevent quote problems
+         * inside JavaScript.
+         */
+
+        function escapeQuotes(value) {
+
+            return value
+                .replace(/'/g, "\\'")
+                .replace(/"/g, '\\"');
+
+        }
+
+
+        /*
+         * Load notes when page opens.
+         */
+
+        displayNotes();
+
+    </script>
+
+
+</body>
+
+</html>

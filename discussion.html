@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Discussion Forum - Virtual Classroom</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        .discussion-section {
+            min-height: calc(100vh - 150px);
+
+            padding: 50px 8%;
+
+            background: #f4f7fb;
+        }
+
+
+        .page-title {
+            text-align: center;
+
+            color: #1e3a8a;
+
+            margin-bottom: 10px;
+
+            font-size: 36px;
+        }
+
+
+        .page-description {
+            text-align: center;
+
+            color: #666;
+
+            margin-bottom: 40px;
+        }
+
+
+        .discussion-container {
+            max-width: 1000px;
+
+            margin: auto;
+        }
+
+
+        .question-form {
+            background: white;
+
+            padding: 30px;
+
+            border-radius: 15px;
+
+            margin-bottom: 35px;
+
+            box-shadow:
+                0 5px 20px
+                rgba(0, 0, 0, 0.08);
+        }
+
+
+        .question-form h2 {
+            color: #1e3a8a;
+
+            margin-bottom: 20px;
+        }
+
+
+        .questions-list h2 {
+            color: #1e3a8a;
+
+            margin-bottom: 20px;
+        }
+
+
+        .question-card {
+            background: white;
+
+            padding: 25px;
+
+            border-radius: 12px;
+
+            margin-bottom: 20px;
+
+            box-shadow:
+                0 4px 15px
+                rgba(0, 0, 0, 0.07);
+        }
+
+
+        .question-header {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 15px;
+        }
+
+
+        .student-name {
+            font-weight: bold;
+
+            color: #2563eb;
+        }
+
+
+        .question-date {
+            color: #888;
+
+            font-size: 13px;
+        }
+
+
+        .question-title {
+            color: #1e3a8a;
+
+            font-size: 21px;
+
+            margin-bottom: 10px;
+        }
+
+
+        .question-text {
+            color: #555;
+
+            line-height: 1.7;
+
+            margin-bottom: 20px;
+        }
+
+
+        .reply-section {
+            background: #f8fafc;
+
+            border-left: 4px solid #2563eb;
+
+            padding: 15px;
+
+            border-radius: 5px;
+
+            margin-top: 15px;
+        }
+
+
+        .reply-header {
+            color: #166534;
+
+            font-weight: bold;
+
+            margin-bottom: 8px;
+        }
+
+
+        .reply-text {
+            color: #555;
+
+            line-height: 1.6;
+        }
+
+
+        .reply-form {
+            margin-top: 15px;
+
+            display: none;
+        }
+
+
+        .reply-form textarea {
+            width: 100%;
+
+            padding: 12px;
+
+            border: 1px solid #cbd5e1;
+
+            border-radius: 7px;
+
+            resize: vertical;
+
+            margin-bottom: 10px;
+        }
+
+
+        .reply-btn {
+            background: #16a34a;
+
+            color: white;
+
+            border: none;
+
+            padding: 9px 16px;
+
+            border-radius: 6px;
+
+            cursor: pointer;
+
+            font-weight: bold;
+        }
+
+
+        .reply-btn:hover {
+            background: #15803d;
+        }
+
+
+        .show-reply-btn {
+            background: #2563eb;
+
+            color: white;
+
+            border: none;
+
+            padding: 9px 16px;
+
+            border-radius: 6px;
+
+            cursor: pointer;
+
+            font-weight: bold;
+        }
+
+
+        .show-reply-btn:hover {
+            background: #1d4ed8;
+        }
+
+
+        .delete-question-btn {
+            background: #dc2626;
+
+            color: white;
+
+            border: none;
+
+            padding: 8px 12px;
+
+            border-radius: 6px;
+
+            cursor: pointer;
+
+            margin-left: 8px;
+        }
+
+
+        .delete-question-btn:hover {
+            background: #b91c1c;
+        }
+
+
+        .empty-message {
+            background: white;
+
+            padding: 40px;
+
+            text-align: center;
+
+            border-radius: 12px;
+
+            color: #666;
+        }
+
+
+        @media (max-width: 700px) {
+
+            .discussion-section {
+                padding: 30px 5%;
+            }
+
+
+            .question-header {
+                flex-direction: column;
+
+                align-items: flex-start;
+
+                gap: 8px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- Navigation Bar -->
+
+    <header>
+
+        <div class="logo">
+            Virtual Classroom
+        </div>
+
+
+        <nav>
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="live-class.html">
+                Live Classes
+            </a>
+
+            <a href="download-notes.html">
+                Notes
+            </a>
+
+            <a href="discussion.html">
+                Discussion
+            </a>
+
+            <a href="announcements.html">
+                Announcements
+            </a>
+
+            <a href="login.html">
+                Logout
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- Discussion Section -->
+
+    <section class="discussion-section">
+
+        <h1 class="page-title">
+            Discussion Forum
+        </h1>
+
+
+        <p class="page-description">
+            Ask questions, discuss topics and clarify your doubts.
+        </p>
+
+
+        <div class="discussion-container">
+
+
+            <!-- Ask Question -->
+
+            <div class="question-form">
+
+                <h2>
+                    Ask a Question
+                </h2>
+
+
+                <form id="questionForm">
+
+
+                    <div class="form-group">
+
+                        <label for="studentName">
+                            Your Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="studentName"
+                            placeholder="Enter your name"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="questionTitle">
+                            Question Title
+                        </label>
+
+                        <input
+                            type="text"
+                            id="questionTitle"
+                            placeholder="Example: How does Binary Search work?"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="questionText">
+                            Your Question
+                        </label>
+
+                        <textarea
+                            id="questionText"
+                            rows="5"
+                            placeholder="Write your question here..."
+                            required
+                        ></textarea>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="btn primary-btn"
+                    >
+                        Post Question
+                    </button>
+
+
+                </form>
+
+            </div>
+
+
+            <!-- Questions -->
+
+            <div class="questions-list">
+
+                <h2>
+                    Questions & Discussions
+                </h2>
+
+
+                <div id="questionsContainer">
+
+                    <!-- Questions appear here -->
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- Footer -->
+
+    <footer>
+
+        <p>
+            © 2026 Virtual Classroom Platform
+        </p>
+
+
+        <p>
+            Agile/Scrum Simulation using Git & GitHub
+        </p>
+
+    </footer>
+
+
+    <!-- JavaScript -->
+
+    <script>
+
+        const questionForm =
+            document.getElementById(
+                "questionForm"
+            );
+
+
+        const questionsContainer =
+            document.getElementById(
+                "questionsContainer"
+            );
+
+
+        /*
+         * Load questions from localStorage.
+         */
+
+        let questions =
+            JSON.parse(
+                localStorage.getItem(
+                    "discussionQuestions"
+                )
+            ) || [];
+
+
+        displayQuestions();
+
+
+        /*
+         * Post Question
+         */
+
+        questionForm.addEventListener(
+            "submit",
+            function(event) {
+
+                event.preventDefault();
+
+
+                const studentName =
+                    document
+                        .getElementById(
+                            "studentName"
+                        )
+                        .value
+                        .trim();
+
+
+                const questionTitle =
+                    document
+                        .getElementById(
+                            "questionTitle"
+                        )
+                        .value
+                        .trim();
+
+
+                const questionText =
+                    document
+                        .getElementById(
+                            "questionText"
+                        )
+                        .value
+                        .trim();
+
+
+                const question = {
+
+                    id: Date.now(),
+
+                    student:
+                        studentName,
+
+                    title:
+                        questionTitle,
+
+                    text:
+                        questionText,
+
+                    date:
+                        new Date()
+                            .toLocaleString(),
+
+                    reply: ""
+
+                };
+
+
+                questions.push(question);
+
+
+                saveQuestions();
+
+
+                questionForm.reset();
+
+
+                displayQuestions();
+
+
+                alert(
+                    "Question posted successfully!"
+                );
+
+            }
+        );
+
+
+        /*
+         * Save Questions
+         */
+
+        function saveQuestions() {
+
+            localStorage.setItem(
+                "discussionQuestions",
+                JSON.stringify(
+                    questions
+                )
+            );
+
+        }
+
+
+        /*
+         * Display Questions
+         */
+
+        function displayQuestions() {
+
+            questionsContainer.innerHTML = "";
+
+
+            if (questions.length === 0) {
+
+                questionsContainer.innerHTML = `
+
+                    <div class="empty-message">
+
+                        No questions have been posted yet.
+                        Be the first to ask a question!
+
+                    </div>
+
+                `;
+
+                return;
+
+            }
+
+
+            questions.forEach(
+                function(question) {
+
+                    const card =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    card.className =
+                        "question-card";
+
+
+                    let replyHTML = "";
+
+
+                    /*
+                     * If teacher has replied
+                     */
+
+                    if (question.reply) {
+
+                        replyHTML = `
+
+                            <div class="reply-section">
+
+                                <div class="reply-header">
+                                    👨‍🏫 Teacher Reply
+                                </div>
+
+                                <div class="reply-text">
+                                    ${question.reply}
+                                </div>
+
+                            </div>
+
+                        `;
+
+                    }
+
+
+                    card.innerHTML = `
+
+                        <div class="question-header">
+
+                            <span class="student-name">
+                                👨‍🎓 ${question.student}
+                            </span>
+
+                            <span class="question-date">
+                                ${question.date}
+                            </span>
+
+                        </div>
+
+
+                        <h3 class="question-title">
+                            ${question.title}
+                        </h3>
+
+
+                        <p class="question-text">
+                            ${question.text}
+                        </p>
+
+
+                        ${replyHTML}
+
+
+                        <div style="margin-top:15px;">
+
+                            <button
+                                class="show-reply-btn"
+                                onclick="showReplyForm(${question.id})"
+                            >
+                                👨‍🏫 Reply
+                            </button>
+
+
+                            <button
+                                class="delete-question-btn"
+                                onclick="deleteQuestion(${question.id})"
+                            >
+                                Delete
+                            </button>
+
+                        </div>
+
+
+                        <div
+                            id="replyForm-${question.id}"
+                            class="reply-form"
+                        >
+
+                            <textarea
+                                id="replyText-${question.id}"
+                                rows="3"
+                                placeholder="Write teacher reply..."
+                            ></textarea>
+
+
+                            <button
+                                class="reply-btn"
+                                onclick="submitReply(${question.id})"
+                            >
+                                Post Reply
+                            </button>
+
+                        </div>
+
+                    `;
+
+
+                    questionsContainer.appendChild(
+                        card
+                    );
+
+                }
+            );
+
+        }
+
+
+        /*
+         * Show Reply Form
+         */
+
+        function showReplyForm(id) {
+
+            const form =
+                document.getElementById(
+                    "replyForm-" + id
+                );
+
+
+            if (form.style.display === "block") {
+
+                form.style.display =
+                    "none";
+
+            }
+
+            else {
+
+                form.style.display =
+                    "block";
+
+            }
+
+        }
+
+
+        /*
+         * Submit Teacher Reply
+         */
+
+        function submitReply(id) {
+
+            const replyText =
+                document
+                    .getElementById(
+                        "replyText-" + id
+                    )
+                    .value
+                    .trim();
+
+
+            if (replyText === "") {
+
+                alert(
+                    "Please enter a reply."
+                );
+
+                return;
+
+            }
+
+
+            const question =
+                questions.find(
+                    function(item) {
+
+                        return item.id === id;
+
+                    }
+                );
+
+
+            if (question) {
+
+                question.reply =
+                    replyText;
+
+                saveQuestions();
+
+                displayQuestions();
+
+                alert(
+                    "Teacher reply posted successfully!"
+                );
+
+            }
+
+        }
+
+
+        /*
+         * Delete Question
+         */
+
+        function deleteQuestion(id) {
+
+            const confirmed =
+                confirm(
+                    "Are you sure you want to delete this question?"
+                );
+
+
+            if (!confirmed) {
+                return;
+            }
+
+
+            questions =
+                questions.filter(
+                    function(question) {
+
+                        return question.id !== id;
+
+                    }
+                );
+
+
+            saveQuestions();
+
+
+            displayQuestions();
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>

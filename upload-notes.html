@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Upload Notes - Virtual Classroom</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        .notes-section {
+            min-height: calc(100vh - 150px);
+
+            padding: 50px 8%;
+
+            background: #f4f7fb;
+        }
+
+
+        .page-title {
+            text-align: center;
+
+            color: #1e3a8a;
+
+            margin-bottom: 10px;
+
+            font-size: 36px;
+        }
+
+
+        .page-description {
+            text-align: center;
+
+            color: #666;
+
+            margin-bottom: 40px;
+        }
+
+
+        .notes-container {
+            max-width: 650px;
+
+            margin: auto;
+        }
+
+
+        .upload-card {
+            background: white;
+
+            padding: 35px;
+
+            border-radius: 15px;
+
+            box-shadow:
+                0 5px 20px
+                rgba(0, 0, 0, 0.08);
+        }
+
+
+        .upload-area {
+            border: 2px dashed #2563eb;
+
+            border-radius: 10px;
+
+            padding: 35px 20px;
+
+            text-align: center;
+
+            margin-bottom: 25px;
+
+            background: #eff6ff;
+        }
+
+
+        .upload-icon {
+            font-size: 45px;
+
+            margin-bottom: 15px;
+        }
+
+
+        .upload-area h3 {
+            color: #1e3a8a;
+
+            margin-bottom: 8px;
+        }
+
+
+        .upload-area p {
+            color: #666;
+
+            margin-bottom: 20px;
+        }
+
+
+        .file-input {
+            width: 100%;
+
+            padding: 10px;
+
+            border: 1px solid #cbd5e1;
+
+            border-radius: 7px;
+        }
+
+
+        .success-message {
+            display: none;
+
+            background: #dcfce7;
+
+            color: #166534;
+
+            padding: 15px;
+
+            border-radius: 8px;
+
+            margin-top: 20px;
+
+            text-align: center;
+        }
+
+
+        .uploaded-notes {
+            margin-top: 30px;
+        }
+
+
+        .uploaded-notes h2 {
+            color: #1e3a8a;
+
+            margin-bottom: 15px;
+        }
+
+
+        .note-item {
+            background: white;
+
+            padding: 18px;
+
+            border-radius: 10px;
+
+            margin-bottom: 12px;
+
+            box-shadow:
+                0 3px 12px
+                rgba(0, 0, 0, 0.06);
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+        }
+
+
+        .note-name {
+            font-weight: bold;
+
+            color: #333;
+        }
+
+
+        .note-info {
+            color: #777;
+
+            font-size: 13px;
+
+            margin-top: 5px;
+        }
+
+
+        .delete-btn {
+            background: #dc2626;
+
+            color: white;
+
+            border: none;
+
+            padding: 8px 12px;
+
+            border-radius: 6px;
+
+            cursor: pointer;
+        }
+
+
+        .delete-btn:hover {
+            background: #b91c1c;
+        }
+
+
+        @media (max-width: 700px) {
+
+            .notes-section {
+                padding: 30px 5%;
+            }
+
+
+            .upload-card {
+                padding: 25px;
+            }
+
+
+            .note-item {
+                flex-direction: column;
+
+                align-items: flex-start;
+
+                gap: 12px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- Navigation -->
+
+    <header>
+
+        <div class="logo">
+            Virtual Classroom
+        </div>
+
+
+        <nav>
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="live-class.html">
+                Live Classes
+            </a>
+
+            <a href="upload-notes.html">
+                Upload Notes
+            </a>
+
+            <a href="download-notes.html">
+                Notes
+            </a>
+
+            <a href="login.html">
+                Logout
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- Upload Notes Section -->
+
+    <section class="notes-section">
+
+        <h1 class="page-title">
+            Upload Notes
+        </h1>
+
+
+        <p class="page-description">
+            Upload study materials for students.
+        </p>
+
+
+        <div class="notes-container">
+
+            <div class="upload-card">
+
+
+                <form id="uploadForm">
+
+
+                    <!-- Teacher Name -->
+
+                    <div class="form-group">
+
+                        <label for="teacherName">
+                            Teacher Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="teacherName"
+                            placeholder="Enter teacher name"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- Subject -->
+
+                    <div class="form-group">
+
+                        <label for="subject">
+                            Subject
+                        </label>
+
+                        <input
+                            type="text"
+                            id="subject"
+                            placeholder="Enter subject"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- Note Title -->
+
+                    <div class="form-group">
+
+                        <label for="noteTitle">
+                            Note Title
+                        </label>
+
+                        <input
+                            type="text"
+                            id="noteTitle"
+                            placeholder="Example: Unit 1 - Introduction"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- Upload Area -->
+
+                    <div class="upload-area">
+
+                        <div class="upload-icon">
+                            📚
+                        </div>
+
+
+                        <h3>
+                            Select Study Material
+                        </h3>
+
+
+                        <p>
+                            Upload PDF, DOC, DOCX or other
+                            study material.
+                        </p>
+
+
+                        <input
+                            type="file"
+                            id="noteFile"
+                            class="file-input"
+                            accept=".pdf,.doc,.docx,.txt,.ppt,.pptx"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- Submit -->
+
+                    <button
+                        type="submit"
+                        class="btn primary-btn login-btn"
+                    >
+                        Upload Notes
+                    </button>
+
+
+                </form>
+
+
+                <!-- Success Message -->
+
+                <div
+                    id="successMessage"
+                    class="success-message"
+                >
+                    Notes uploaded successfully!
+                </div>
+
+
+            </div>
+
+
+            <!-- Uploaded Notes -->
+
+            <div class="uploaded-notes">
+
+                <h2>
+                    Uploaded Materials
+                </h2>
+
+
+                <div id="notesList">
+
+                    <!-- Notes appear here -->
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- Footer -->
+
+    <footer>
+
+        <p>
+            © 2026 Virtual Classroom Platform
+        </p>
+
+
+        <p>
+            Agile/Scrum Simulation using Git & GitHub
+        </p>
+
+    </footer>
+
+
+    <!-- JavaScript -->
+
+    <script>
+
+        const uploadForm =
+            document.getElementById("uploadForm");
+
+
+        const notesList =
+            document.getElementById("notesList");
+
+
+        const successMessage =
+            document.getElementById("successMessage");
+
+
+        /*
+         * Load previously uploaded
+         * note information.
+         */
+
+        let notes =
+            JSON.parse(
+                localStorage.getItem("notes")
+            ) || [];
+
+
+        displayNotes();
+
+
+        /*
+         * Upload Form
+         */
+
+        uploadForm.addEventListener(
+            "submit",
+            function(event) {
+
+                event.preventDefault();
+
+
+                const teacherName =
+                    document
+                        .getElementById("teacherName")
+                        .value;
+
+
+                const subject =
+                    document
+                        .getElementById("subject")
+                        .value;
+
+
+                const noteTitle =
+                    document
+                        .getElementById("noteTitle")
+                        .value;
+
+
+                const fileInput =
+                    document
+                        .getElementById("noteFile");
+
+
+                const file =
+                    fileInput.files[0];
+
+
+                if (!file) {
+
+                    alert(
+                        "Please select a file."
+                    );
+
+                    return;
+
+                }
+
+
+                /*
+                 * Store file information.
+                 *
+                 * For this frontend project,
+                 * only the file details are stored.
+                 */
+
+                const note = {
+
+                    id: Date.now(),
+
+                    teacher:
+                        teacherName,
+
+                    subject:
+                        subject,
+
+                    title:
+                        noteTitle,
+
+                    fileName:
+                        file.name,
+
+                    fileSize:
+                        formatFileSize(
+                            file.size
+                        ),
+
+                    date:
+                        new Date()
+                            .toLocaleDateString()
+
+                };
+
+
+                notes.push(note);
+
+
+                localStorage.setItem(
+                    "notes",
+                    JSON.stringify(notes)
+                );
+
+
+                successMessage.style.display =
+                    "block";
+
+
+                uploadForm.reset();
+
+
+                displayNotes();
+
+
+                setTimeout(
+                    function() {
+
+                        successMessage.style.display =
+                            "none";
+
+                    },
+                    3000
+                );
+
+            }
+        );
+
+
+        /*
+         * Display Notes
+         */
+
+        function displayNotes() {
+
+            notesList.innerHTML = "";
+
+
+            if (notes.length === 0) {
+
+                notesList.innerHTML = `
+
+                    <p style="color:#666;">
+                        No notes uploaded yet.
+                    </p>
+
+                `;
+
+                return;
+
+            }
+
+
+            notes.forEach(
+                function(note) {
+
+                    const noteElement =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    noteElement.className =
+                        "note-item";
+
+
+                    noteElement.innerHTML = `
+
+                        <div>
+
+                            <div class="note-name">
+                                📄 ${note.title}
+                            </div>
+
+                            <div class="note-info">
+                                Subject:
+                                ${note.subject}
+                            </div>
+
+                            <div class="note-info">
+                                Teacher:
+                                ${note.teacher}
+                            </div>
+
+                            <div class="note-info">
+                                File:
+                                ${note.fileName}
+                                (${note.fileSize})
+                            </div>
+
+                            <div class="note-info">
+                                Uploaded:
+                                ${note.date}
+                            </div>
+
+                        </div>
+
+
+                        <button
+                            class="delete-btn"
+                            onclick="deleteNote(${note.id})"
+                        >
+                            Delete
+                        </button>
+
+                    `;
+
+
+                    notesList.appendChild(
+                        noteElement
+                    );
+
+                }
+            );
+
+        }
+
+
+        /*
+         * Delete Note
+         */
+
+        function deleteNote(id) {
+
+            const confirmDelete =
+                confirm(
+                    "Delete this note?"
+                );
+
+
+            if (!confirmDelete) {
+                return;
+            }
+
+
+            notes =
+                notes.filter(
+                    function(note) {
+
+                        return note.id !== id;
+
+                    }
+                );
+
+
+            localStorage.setItem(
+                "notes",
+                JSON.stringify(notes)
+            );
+
+
+            displayNotes();
+
+        }
+
+
+        /*
+         * Format File Size
+         */
+
+        function formatFileSize(bytes) {
+
+            if (bytes === 0) {
+                return "0 Bytes";
+            }
+
+
+            const units = [
+                "Bytes",
+                "KB",
+                "MB",
+                "GB"
+            ];
+
+
+            const index =
+                Math.floor(
+                    Math.log(bytes) /
+                    Math.log(1024)
+                );
+
+
+            return (
+                parseFloat(
+                    (
+                        bytes /
+                        Math.pow(
+                            1024,
+                            index
+                        )
+                    ).toFixed(2)
+                )
+                +
+                " "
+                +
+                units[index]
+            );
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>
