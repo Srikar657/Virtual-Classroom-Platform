@@ -11,3 +11,15 @@ What did not go well?
 •	Some UI work took additional time.
 What can be improved?
 •	Better task estimation in the next sprint.
+
+
+: Sprint 2 Review
+Demonstrate:
+Teacher
+   ↓
+Creates Virtual Class
+   ↓
+Student Views Class
+   ↓
+Student Joins Live Class
+Record the sprint result.
